@@ -97,7 +97,7 @@ export default function Pricing() {
                 ))}
               </ul>
               <a 
-                href="tel:+918796982003"
+                href="tel:+918287023020"
                 className={`w-full py-6 rounded-[2rem] font-black text-lg transition-all flex items-center justify-center gap-3 ${
                   plan.highlight 
                     ? 'bg-white text-brand-900 hover:bg-brand-50 shadow-xl shadow-brand-900/10' 

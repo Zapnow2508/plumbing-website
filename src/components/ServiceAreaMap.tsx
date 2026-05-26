@@ -30,7 +30,7 @@ export default function ServiceAreaMap() {
               <span className="text-brand-600 font-black uppercase tracking-[0.3em] text-xs mb-4 block">Our Reach</span>
               <h2 className="text-4xl md:text-6xl mb-8 text-slate-900 leading-tight">Serving all of Faridabad</h2>
               <p className="text-slate-500 text-xl leading-relaxed font-medium">
-                Vikas Plumbing Services is proud to serve the entire Faridabad region. From residential complexes in Sector 15 to commercial hubs in NIT, we are just a call away.
+                Royal Plumbing Services is proud to serve the entire Faridabad region. From residential complexes in Sector 15 to commercial hubs in NIT, we are just a call away.
               </p>
             </motion.div>
 
@@ -61,7 +61,7 @@ export default function ServiceAreaMap() {
                 <span className="font-black text-slate-900 uppercase tracking-widest text-sm">Verified Service Area</span>
               </div>
               <p className="text-slate-500 font-medium leading-relaxed italic">
-                "We ensure that every corner of Faridabad gets the same high-quality plumbing service that Vikas Ji is known for."
+                "We ensure that every corner of Faridabad gets the same high-quality plumbing service that Royal Plumbing Services is known for."
               </p>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function ServiceAreaMap() {
               <Marker position={FARIDABAD_CENTER}>
                 <Popup>
                   <div className="text-center">
-                    <p className="font-black text-slate-900">Vikas Plumbing Services</p>
+                    <p className="font-black text-slate-900">Royal Plumbing Services</p>
                     <p className="text-xs text-slate-500">Sector 15, Faridabad</p>
                   </div>
                 </Popup>

@@ -188,7 +188,7 @@ export default function ServiceBanner({ isModalOpen, setIsModalOpen }: ServiceBa
                       <div className="flex justify-between items-center text-base font-black text-brand-700 bg-white p-3 rounded-xl shadow-sm border border-brand-50">
                         <span className="flex items-center gap-2">
                           <CheckCircle2 className="w-5 h-5 text-green-500" />
-                          Vikas Plumbing
+                          Royal Plumbing
                         </span>
                         <span className="text-green-600 text-lg">₹700*</span>
                       </div>
@@ -198,28 +198,20 @@ export default function ServiceBanner({ isModalOpen, setIsModalOpen }: ServiceBa
 
                   <div className="space-y-4">
                     <a 
-                      href="tel:+918796982003"
+                      href="tel:+918287023020"
                       className="w-full bg-brand-600 hover:bg-brand-700 text-white px-6 py-4 rounded-xl font-black flex items-center justify-center gap-3 transition-colors shadow-xl shadow-brand-600/20 text-lg"
                     >
                       <Phone className="w-5 h-5" />
-                      +91 87969 82003
+                      +91 82870 23020
                     </a>
                     
                     <a 
-                      href="https://wa.me/918796982003"
+                      href="https://wa.me/918287023020"
                       target="_blank" rel="noopener noreferrer"
                       className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-4 rounded-xl font-black flex items-center justify-center gap-3 transition-colors shadow-xl shadow-[#25D366]/20 text-lg"
                     >
                       <MessageCircle className="w-5 h-5" />
                       Chat on WhatsApp
-                    </a>
-
-                    <a 
-                      href="tel:+917428023020"
-                      className="w-full bg-slate-50 hover:bg-slate-100 text-slate-900 border border-slate-200 px-6 py-4 rounded-xl font-bold flex items-center justify-center gap-3 transition-colors"
-                    >
-                      <Phone className="w-5 h-5 text-slate-400" />
-                      +91 74280 23020 (Backup)
                     </a>
                   </div>
                 </div>

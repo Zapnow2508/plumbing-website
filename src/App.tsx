@@ -27,7 +27,7 @@ const steps = [
   },
   {
     title: "Expert Visit",
-    desc: "Vikas Ji or a senior technician arrives with all necessary tools.",
+    desc: "Our expert technician arrives with all necessary tools.",
     icon: <Wrench className="w-8 h-8" />
   },
   {
@@ -110,7 +110,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
               <div className="max-w-2xl">
-                <span className="text-brand-600 font-black uppercase tracking-[0.2em] text-xs mb-4 block">Why Vikas Plumbing</span>
+                <span className="text-brand-600 font-black uppercase tracking-[0.2em] text-xs mb-4 block">Why Royal Plumbing Services</span>
                 <h2 className="text-4xl md:text-6xl text-slate-900 leading-tight">Professional service you can trust</h2>
               </div>
               <p className="text-slate-500 max-w-sm text-lg font-medium">
@@ -191,7 +191,7 @@ export default function App() {
                 <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-3xl">
                   <img 
                     src="/images/hero_commercial.png" 
-                    alt="Vikas Ji at Work" 
+                    alt="Royal Plumbing Services expert at work" 
                     className="w-full h-auto object-cover"
                     referrerPolicy="no-referrer"
                   />
@@ -219,7 +219,7 @@ export default function App() {
                   <span className="text-brand-600 font-black uppercase tracking-[0.3em] text-xs mb-4 block">Our Expertise</span>
                   <h2 className="text-4xl md:text-6xl mb-8 leading-tight">Precision in every connection</h2>
                   <p className="text-slate-500 text-xl leading-relaxed font-medium">
-                    Vikas Plumbing Services provides professional installation, maintenance, and repair for all your plumbing needs. We collaborate with construction departments and review blueprints to ensure perfect execution.
+                    Royal Plumbing Services provides professional installation, maintenance, and repair for all your plumbing needs. We collaborate with construction departments and review blueprints to ensure perfect execution.
                   </p>
                 </div>
                 
@@ -278,21 +278,17 @@ export default function App() {
                 </h2>
                 
                 <p className="text-slate-400 text-xl md:text-2xl max-w-2xl mx-auto font-medium">
-                  Join our 250+ happy customers in Faridabad. Call Vikas Ji today for a reliable and honest service.
+                  Join our 250+ happy customers in Faridabad. Call Royal Plumbing Services today for a reliable and honest service.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row justify-center items-center gap-8">
                   <a 
-                    href="tel:+918796982003" 
+                    href="tel:+918287023020" 
                     className="group bg-white text-brand-900 px-12 py-6 rounded-[2rem] font-black text-2xl flex items-center justify-center gap-4 hover:scale-105 transition-all shadow-2xl shadow-brand-900/10"
                   >
                     <Phone className="w-8 h-8 fill-brand-600 text-brand-600" />
-                    +91 87969 82003
+                    +91 82870 23020
                   </a>
-                  <div className="flex flex-col items-start">
-                    <p className="text-slate-500 text-sm font-bold uppercase tracking-widest mb-1">Backup Line</p>
-                    <a href="tel:+917428023020" className="text-2xl font-black hover:text-brand-400 transition-colors">+91 74280 23020</a>
-                  </div>
                 </div>
                 
                 <div className="pt-8 flex flex-wrap justify-center gap-8 opacity-50">

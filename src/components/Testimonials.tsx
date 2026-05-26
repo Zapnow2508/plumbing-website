@@ -154,7 +154,7 @@ export default function Testimonials() {
               </button>
               
               <h3 className="text-3xl font-black text-slate-900 mb-2">Write a Review</h3>
-              <p className="text-slate-500 font-medium text-sm mb-8">Share your experience with Vikas Plumbing services.</p>
+              <p className="text-slate-500 font-medium text-sm mb-8">Share your experience with Royal Plumbing Services.</p>
               
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>

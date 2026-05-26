@@ -45,7 +45,7 @@ export default function AboutVikas() {
             <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-3xl border-[12px] border-slate-50">
               <img 
                 src="/images/vikas_profile.jpg" 
-                alt="Vikas Ji - Founder of Vikas Plumbing Services" 
+                alt="Royal Plumbing Services" 
                 className="w-full h-auto object-cover aspect-[4/5] object-[center_25%] scale-[1.3] origin-top transition-transform"
                 referrerPolicy="no-referrer"
               />
@@ -78,7 +78,7 @@ export default function AboutVikas() {
                 </div>
                 <div>
                   <p className="text-xs font-black text-brand-600 uppercase tracking-[0.2em] mb-1">MSME Certified</p>
-                  <p className="text-xl font-black text-slate-900">Vikas Plumbing</p>
+                  <p className="text-xl font-black text-slate-900">Royal Plumbing</p>
                 </div>
               </div>
             </motion.div>
@@ -94,7 +94,7 @@ export default function AboutVikas() {
               <span className="text-brand-600 font-black uppercase tracking-[0.3em] text-xs mb-4 block">The Mastermind</span>
               <h2 className="text-4xl md:text-6xl mb-8 text-slate-900 leading-tight">A decade of trust in every home</h2>
               <p className="text-slate-500 text-xl leading-relaxed font-medium">
-                Vikas Ji's journey began with a simple mission: to provide Faridabad with a plumbing service that values honesty as much as technical skill. Today, <strong>Vikas Plumbing Services</strong> stands as a symbol of reliability for over 250 families.
+                Our journey began with a simple mission: to provide Faridabad with a plumbing service that values honesty as much as technical skill. Today, <strong>Royal Plumbing Services</strong> stands as a symbol of reliability for over 250 families.
               </p>
             </motion.div>
 

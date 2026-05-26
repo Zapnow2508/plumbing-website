@@ -37,8 +37,7 @@ export default function Header({ onOpenModal }: { onOpenModal: () => void }) {
               </span>
             </div>
             <div className="flex items-center gap-6">
-              <a href="tel:+918796982003" className="hover:text-brand-600 transition-colors">+91 87969 82003</a>
-              <a href="tel:+917428023020" className="hover:text-brand-600 transition-colors">+91 74280 23020</a>
+              <a href="tel:+918287023020" className="hover:text-brand-600 transition-colors font-bold">+91 82870 23020</a>
             </div>
           </div>
         </div>
@@ -49,12 +48,12 @@ export default function Header({ onOpenModal }: { onOpenModal: () => void }) {
         <div className="flex items-center gap-4">
           <img 
             src="/images/logo.png" 
-            alt="Vikas Plumbing Logo" 
+            alt="Royal Plumbing Services Logo" 
             className="w-12 h-12 object-contain"
             referrerPolicy="no-referrer"
           />
           <div className="hidden sm:block">
-            <h1 className="text-lg font-bold leading-none text-slate-900">Vikas Plumbing</h1>
+            <h1 className="text-lg font-bold leading-none text-slate-900">Royal Plumbing Services</h1>
             <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-brand-600">MSME Registered</span>
           </div>
         </div>

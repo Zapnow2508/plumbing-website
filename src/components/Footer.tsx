@@ -15,12 +15,12 @@ export default function Footer() {
                 <Phone className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-black leading-none text-white tracking-tight">Vikas Plumbing</h1>
+                <h1 className="text-2xl font-black leading-none text-white tracking-tight">Royal Plumbing Services</h1>
                 <span className="text-[10px] uppercase tracking-[0.3em] font-black text-brand-500">Faridabad's Choice</span>
               </div>
             </div>
             <p className="text-slate-500 text-lg leading-relaxed font-medium">
-              Expert plumbing solutions by Vikas Ji. Over 10 years of mastery in installations and repairs for Faridabad homes.
+              Expert plumbing solutions. Over 10 years of mastery in installations and repairs for Faridabad homes.
             </p>
             <div className="flex gap-4">
               {[Facebook, Instagram, Twitter].map((Icon, i) => (
@@ -88,8 +88,7 @@ export default function Footer() {
               <li className="flex items-start gap-4">
                 <Phone className="w-5 h-5 text-brand-500 shrink-0 mt-1" />
                 <div className="flex flex-col gap-1">
-                  <a href="tel:+918796982003" className="text-white font-black hover:text-brand-500 transition-colors">+91 87969 82003</a>
-                  <a href="tel:+917428023020" className="text-white font-black hover:text-brand-500 transition-colors">+91 74280 23020</a>
+                  <a href="tel:+918287023020" className="text-white font-black hover:text-brand-500 transition-colors text-lg">+91 82870 23020</a>
                 </div>
               </li>
               <li className="flex items-center gap-4">
@@ -106,7 +105,7 @@ export default function Footer() {
             MSME Registered Business
           </div>
           <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-700">
-            © {new Date().getFullYear()} Vikas Plumbing Services. Crafted for Excellence.
+            © {new Date().getFullYear()} Royal Plumbing Services. Crafted for Excellence.
           </p>
           <div className="flex gap-8 text-[10px] font-black uppercase tracking-widest text-slate-600">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
