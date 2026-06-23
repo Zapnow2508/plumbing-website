@@ -7,12 +7,12 @@ import Pricing from './components/Pricing';
 import Footer from './components/Footer';
 import ServiceAreaMap from './components/ServiceAreaMap';
 import { ShieldCheck, Clock, Award, CheckCircle2, Phone, ChevronRight, Users, Settings, Search, FileText, Wrench, Zap, Calculator, ThumbsUp, Droplets, Calendar, MessageSquare, CreditCard } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 
 const categories = [
-  { title: "Emergency", icon: <Zap className="w-6 h-6" />, color: "bg-amber-50 text-amber-600" },
-  { title: "Installation", icon: <Wrench className="w-6 h-6" />, color: "bg-blue-50 text-blue-600" },
+  { title: "Emergency", icon: <Zap className="w-6 h-6" />, color: "bg-amber-50 text-gold-600" },
+  { title: "Installation", icon: <Wrench className="w-6 h-6" />, color: "bg-blue-50 text-brand-600" },
   { title: "Maintenance", icon: <Settings className="w-6 h-6" />, color: "bg-green-50 text-green-600" },
   { title: "Leak Repair", icon: <Droplets className="w-6 h-6" />, color: "bg-red-50 text-red-600" },
   { title: "Commercial", icon: <Award className="w-6 h-6" />, color: "bg-purple-50 text-purple-600" },
@@ -46,58 +46,71 @@ const features = [
   {
     title: "250+ Happy Customers",
     description: "Successfully installed and repaired pipes for over 250 residential and commercial clients.",
-    icon: <Users className="w-8 h-8 text-brand-500" />
+    icon: <Users className="w-8 h-8 text-gold-500" />
   },
   {
     title: "300+ Systems Tested",
     description: "Thoroughly tested over 300 plumbing systems to identify and resolve potential leakages.",
-    icon: <Settings className="w-8 h-8 text-brand-500" />
+    icon: <Settings className="w-8 h-8 text-gold-500" />
   },
   {
     title: "Expert Troubleshooting",
     description: "Helped resolve complex plumbing issues for 54+ customers with 100% satisfaction.",
-    icon: <Zap className="w-8 h-8 text-brand-500" />
+    icon: <Zap className="w-8 h-8 text-gold-500" />
   }
 ];
 
-const serviceList = [
-  { title: "Pipe Installation", desc: "Installing pipes and plumbing fixtures in homes or businesses.", icon: <Wrench className="w-5 h-5" /> },
-  { title: "System Maintenance", desc: "Maintaining water supply and waste removal systems.", icon: <Settings className="w-5 h-5" /> },
-  { title: "Material Selection", desc: "Selecting the best materials for a durable plumbing system.", icon: <CheckCircle2 className="w-5 h-5" /> },
-  { title: "Blueprint Review", desc: "Reviewing building blueprints for optimal plumbing installation.", icon: <FileText className="w-5 h-5" /> },
-  { title: "Equipment Inspection", desc: "Operating advanced equipment to troubleshoot systems.", icon: <Search className="w-5 h-5" /> },
-  { title: "Leak Repair", desc: "Testing and repairing pipe systems and leakages.", icon: <ShieldCheck className="w-5 h-5" /> },
-  { title: "Drain Clearing", desc: "Clearing obstructions from drains and plumbing systems.", icon: <Droplets className="w-5 h-5" /> },
-  { title: "Cost Estimation", desc: "Providing accurate estimates for installations and repairs.", icon: <Calculator className="w-5 h-5" /> },
-  { title: "Expert Advice", desc: "Offering professional recommendations to customers.", icon: <ThumbsUp className="w-5 h-5" /> }
-];
+// Grouped services list for tabbed view
+const groupedServices = {
+  residential: [
+    { title: "Pipe Installation", desc: "Installing durable water and sewage pipes with standard quality selection.", icon: <Wrench className="w-5 h-5" /> },
+    { title: "Drain Clearing", desc: "Removing tough obstructions from kitchen sinks, shower traps, and main drains.", icon: <Droplets className="w-5 h-5" /> },
+    { title: "Bathroom Fittings", desc: "Setting up luxury washbasins, taps, flush systems, and wall-hung seats.", icon: <CheckCircle2 className="w-5 h-5" /> },
+    { title: "Geyser Installation", desc: "Safe mounting and connection of electrical geysers/heaters.", icon: <Settings className="w-5 h-5" /> }
+  ],
+  commercial: [
+    { title: "Commercial Plumbing", desc: "Large-scale layout and piping execution for complexes and hotels.", icon: <Award className="w-5 h-5" /> },
+    { title: "Blueprint Review", desc: "Working with construction departments to review maps for installations.", icon: <FileText className="w-5 h-5" /> },
+    { title: "Pressure Testing", desc: "Pneumatic or water pressure tests to audit commercial building main pipes.", icon: <Search className="w-5 h-5" /> },
+    { title: "Cost Estimation", desc: "Providing granular construction material invoices and labor calculations.", icon: <Calculator className="w-5 h-5" /> }
+  ],
+  emergency: [
+    { title: "24/7 Leak Repair", desc: "Rapid detection and resolution of hidden leakages and wall dampness.", icon: <ShieldCheck className="w-5 h-5" /> },
+    { title: "Burst Pipe Patching", desc: "Quick welding and patch fixing for high pressure supply line bursts.", icon: <Zap className="w-5 h-5" /> },
+    { title: "Sump Pump Issues", desc: "Immediate troubleshooting of basement pump drainage motors.", icon: <Settings className="w-5 h-5" /> },
+    { title: "Urgent Consultation", desc: "Video diagnostic walkthroughs for critical pipe system emergencies.", icon: <ThumbsUp className="w-5 h-5" /> }
+  ]
+};
+
+type ServiceTab = 'residential' | 'commercial' | 'emergency';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<ServiceTab>('residential');
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header onOpenModal={() => setIsModalOpen(true)} />
       
       <main className="flex-grow">
         {/* Hero Section with Changing Banner */}
         <ServiceBanner isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
 
-        {/* Service Categories Grid */}
-        <section className="py-16 px-4 bg-white -mt-10 relative z-20">
+        {/* Service Categories Slider */}
+        <section className="py-16 px-4 bg-white -mt-12 relative z-20">
           <div className="max-w-7xl mx-auto">
-            <div className="bg-white rounded-[3rem] shadow-3xl p-8 md:p-12 border border-slate-100">
-                <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 pt-2 px-2 -mx-2 hide-scrollbar">
+            <div className="bg-white rounded-[3rem] shadow-3xl p-8 md:p-12 border border-slate-200/50">
+              <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 pt-2 px-2 -mx-2 hide-scrollbar">
                 {categories.map((cat, idx) => (
                   <motion.div 
                     key={idx}
                     whileHover={{ y: -5 }}
                     className="flex flex-col items-center gap-4 cursor-pointer group min-w-[120px] shrink-0 snap-center"
                   >
-                    <div className={`w-20 h-20 rounded-3xl ${cat.color} flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-sm`}>
+                    <div className={`w-20 h-20 rounded-3xl ${cat.color} flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-sm border border-slate-100`}>
                       {cat.icon}
                     </div>
-                    <span className="font-black text-slate-900 text-sm uppercase tracking-widest">{cat.title}</span>
+                    <span className="font-black text-slate-900 text-xs uppercase tracking-widest">{cat.title}</span>
                   </motion.div>
                 ))}
               </div>
@@ -110,7 +123,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
               <div className="max-w-2xl">
-                <span className="text-brand-600 font-black uppercase tracking-[0.2em] text-xs mb-4 block">Why Royal Plumbing Services</span>
+                <span className="text-gold-600 font-black uppercase tracking-[0.2em] text-xs mb-4 block">Why Royal Plumbing Services</span>
                 <h2 className="text-4xl md:text-6xl text-slate-900 leading-tight">Professional service you can trust</h2>
               </div>
               <p className="text-slate-500 max-w-sm text-lg font-medium">
@@ -128,8 +141,8 @@ export default function App() {
                   transition={{ delay: idx * 0.1 }}
                   className="group bg-white p-10 rounded-[2.5rem] border border-slate-100/50 hover:shadow-2xl hover:shadow-brand-500/10 transition-all duration-500 relative overflow-hidden"
                 >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-brand-50 rounded-bl-[100px] -mr-16 -mt-16 transition-all duration-500 group-hover:scale-150 group-hover:bg-brand-500" />
-                  <div className="w-16 h-16 bg-brand-50 text-brand-600 rounded-2xl shadow-sm flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-white transition-all duration-500 relative z-10">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gold-50 rounded-bl-[100px] -mr-16 -mt-16 transition-all duration-500 group-hover:scale-150 group-hover:bg-gold-500" />
+                  <div className="w-16 h-16 bg-gold-50 text-gold-600 rounded-2xl shadow-sm flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-white transition-all duration-500 relative z-10 border border-gold-100/30">
                     {feature.icon}
                   </div>
                   <h3 className="text-2xl mb-4 font-black relative z-10 group-hover:text-slate-900 transition-colors">{feature.title}</h3>
@@ -141,10 +154,10 @@ export default function App() {
         </section>
 
         {/* How It Works Section */}
-        <section className="py-20 md:py-32 px-4 bg-brand-50/50 text-slate-900 overflow-hidden relative">
+        <section className="py-20 md:py-32 px-4 bg-brand-50/20 text-slate-900 overflow-hidden relative">
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-20">
-              <span className="text-brand-600 font-black uppercase tracking-[0.3em] text-xs mb-4 block">Simple Process</span>
+              <span className="text-gold-600 font-black uppercase tracking-[0.3em] text-xs mb-4 block">Simple Process</span>
               <h2 className="text-4xl md:text-6xl font-black mb-8 text-slate-900">How it works</h2>
               <p className="text-slate-600 text-xl max-w-2xl mx-auto font-medium">
                 Getting your plumbing fixed is easier than ever. Follow these four simple steps.
@@ -162,10 +175,10 @@ export default function App() {
                   className="relative group"
                 >
                   {idx < steps.length - 1 && (
-                    <div className="hidden lg:block absolute top-12 left-full w-full h-px border-t-2 border-dashed border-brand-200 z-0 -ml-10" />
+                    <div className="hidden lg:block absolute top-12 left-full w-full h-px border-t-2 border-dashed border-gold-200 z-0 -ml-10" />
                   )}
                   <div className="relative z-10 flex flex-col items-center text-center">
-                    <div className="w-24 h-24 rounded-[2rem] bg-white border border-brand-100 flex items-center justify-center text-brand-600 mb-8 group-hover:scale-110 group-hover:bg-brand-600 group-hover:text-white transition-all duration-500 shadow-xl shadow-brand-500/10 z-10">
+                    <div className="w-24 h-24 rounded-[2rem] bg-white border border-gold-100 flex items-center justify-center text-gold-600 mb-8 group-hover:scale-110 group-hover:bg-brand-600 group-hover:text-white transition-all duration-500 shadow-xl shadow-brand-500/5 z-10">
                       {step.icon}
                     </div>
                     <h3 className="text-2xl font-black mb-4 text-slate-900">{step.title}</h3>
@@ -177,79 +190,76 @@ export default function App() {
           </div>
         </section>
 
-        {/* About Vikas Ji Section */}
+        {/* About Section */}
         <AboutVikas />
 
-        {/* Pricing Section */}
-        <Pricing />
-
-        {/* Services Overview Section - Modern Split Layout */}
-        <section id="services" className="py-20 md:py-32 px-4 bg-white">
+        {/* Interactive Service Explorer Section */}
+        <section id="services" className="py-24 md:py-32 px-4 bg-white relative">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-24 items-center">
-              <div className="lg:w-1/2 relative">
-                <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-3xl">
-                  <img 
-                    src="/images/hero_commercial.png" 
-                    alt="Royal Plumbing Services expert at work" 
-                    className="w-full h-auto object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                {/* Floating Badge */}
-                <motion.div 
-                  initial={{ x: 50, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  className="absolute -bottom-10 -right-10 bg-white p-8 rounded-[2.5rem] shadow-2xl z-20 border border-slate-100 hidden md:block"
+            <div className="text-center mb-16">
+              <span className="text-gold-600 font-black uppercase tracking-[0.25em] text-xs mb-4 block">Interactive Explorer</span>
+              <h2 className="text-4xl md:text-5xl font-display font-black text-slate-900 leading-tight">
+                Discover Our Services
+              </h2>
+              <p className="text-slate-500 text-lg max-w-xl mx-auto mt-4 font-medium">
+                Toggle through different categories to explore our comprehensive plumbing list.
+              </p>
+            </div>
+
+            {/* Tabs Selector */}
+            <div className="flex justify-center gap-3 mb-16 flex-wrap">
+              {(['residential', 'commercial', 'emergency'] as ServiceTab[]).map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-8 py-4.5 rounded-full font-black text-xs uppercase tracking-widest transition-all border ${
+                    activeTab === tab 
+                      ? 'bg-brand-600 text-white border-brand-500 shadow-xl shadow-brand-600/20' 
+                      : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-gold-400 hover:bg-slate-100/50'
+                  }`}
                 >
-                  <div className="flex items-center gap-5">
-                    <div className="bg-brand-600 p-4 rounded-2xl text-white shadow-xl shadow-brand-600/30">
-                      <Award className="w-8 h-8" />
+                  {tab}
+                </button>
+              ))}
+            </div>
+
+            {/* Tabs Panels */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+              <AnimatePresence mode="wait">
+                {groupedServices[activeTab].map((service, idx) => (
+                  <motion.div
+                    key={`${activeTab}-${idx}`}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.3, delay: idx * 0.05 }}
+                    className="p-8 bg-slate-50 rounded-[2rem] border border-slate-200/50 flex items-start gap-6 hover:shadow-xl transition-all group cursor-pointer"
+                  >
+                    <div className="w-14 h-14 shrink-0 rounded-2xl bg-white shadow-sm flex items-center justify-center text-gold-600 group-hover:bg-brand-600 group-hover:text-white transition-all duration-300 border border-slate-200/20">
+                      {service.icon}
                     </div>
-                    <div>
-                      <div className="text-3xl font-black text-slate-900">Vikas Ji</div>
-                      <div className="text-sm font-bold text-brand-600 uppercase tracking-widest">Master Plumber</div>
+                    <div className="space-y-2">
+                      <h4 className="font-display font-black text-slate-900 text-lg">{service.title}</h4>
+                      <p className="text-sm text-slate-500 leading-relaxed font-medium">{service.desc}</p>
                     </div>
-                  </div>
-                </motion.div>
-              </div>
-              
-              <div className="lg:w-1/2 space-y-12">
-                <div>
-                  <span className="text-brand-600 font-black uppercase tracking-[0.3em] text-xs mb-4 block">Our Expertise</span>
-                  <h2 className="text-4xl md:text-6xl mb-8 leading-tight">Precision in every connection</h2>
-                  <p className="text-slate-500 text-xl leading-relaxed font-medium">
-                    Royal Plumbing Services provides professional installation, maintenance, and repair for all your plumbing needs. We collaborate with construction departments and review blueprints to ensure perfect execution.
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                  {serviceList.map((service, idx) => (
-                    <motion.div 
-                      key={idx} 
-                      whileHover={{ x: 10 }}
-                      className="flex items-start gap-5 group cursor-pointer"
-                    >
-                      <div className="w-14 h-14 shrink-0 rounded-2xl bg-white shadow-sm flex items-center justify-center text-brand-600 group-hover:bg-brand-600 group-hover:text-white transition-all duration-300">
-                        {service.icon}
-                      </div>
-                      <div>
-                        <h4 className="font-black text-slate-900 text-lg mb-1">{service.title}</h4>
-                        <p className="text-sm text-slate-500 font-medium leading-snug">{service.desc}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-                
-                <div className="pt-6">
-                  <button className="bg-brand-600 hover:bg-brand-700 text-white px-12 py-5 rounded-2xl font-black text-lg transition-all shadow-xl shadow-brand-600/20 hover:scale-105 active:scale-95">
-                    Explore All Services
-                  </button>
-                </div>
-              </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+
+            <div className="text-center mt-16">
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-brand-600 hover:bg-brand-700 text-white px-10 py-4.5 rounded-full font-black text-xs uppercase tracking-widest transition-all shadow-xl shadow-brand-600/20 border border-brand-500 hover:border-gold-400"
+              >
+                Instant Booking Wizard
+              </button>
             </div>
           </div>
         </section>
+
+        {/* Pricing Section */}
+        <Pricing />
 
         {/* Gallery Section */}
         <Gallery />
@@ -263,8 +273,8 @@ export default function App() {
         {/* CTA Section - Immersive Design */}
         <section id="contact" className="py-32 px-4">
           <div className="max-w-6xl mx-auto relative">
-            <div className="absolute inset-0 bg-brand-200 rounded-[4rem] rotate-1 scale-[1.02] opacity-50" />
-            <div className="bg-gradient-to-br from-brand-500 to-brand-800 rounded-[4rem] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-3xl">
+            <div className="absolute inset-0 bg-gold-200/20 rounded-[4rem] rotate-1 scale-[1.02] opacity-50" />
+            <div className="bg-gradient-to-br from-brand-800 to-brand-950 rounded-[4rem] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-3xl border border-gold-500/20">
               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_-20%,rgba(255,255,255,0.2),transparent)]" />
               
               <div className="relative z-10 space-y-12">
@@ -284,24 +294,24 @@ export default function App() {
                 <div className="flex flex-col sm:flex-row justify-center items-center gap-8">
                   <a 
                     href="tel:+918287023020" 
-                    className="group bg-white text-brand-900 px-12 py-6 rounded-[2rem] font-black text-2xl flex items-center justify-center gap-4 hover:scale-105 transition-all shadow-2xl shadow-brand-900/10"
+                    className="group bg-white text-brand-900 px-12 py-6 rounded-[2rem] font-black text-2xl flex items-center justify-center gap-4 hover:scale-105 transition-all shadow-2xl shadow-brand-900/10 border border-transparent hover:border-gold-400"
                   >
-                    <Phone className="w-8 h-8 fill-brand-600 text-brand-600" />
+                    <Phone className="w-8 h-8 fill-gold-600 text-gold-600" />
                     +91 82870 23020
                   </a>
                 </div>
                 
                 <div className="pt-8 flex flex-wrap justify-center gap-8 opacity-50">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-brand-400" />
+                    <CheckCircle2 className="w-5 h-5 text-gold-400" />
                     <span className="text-sm font-bold">MSME Certified</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-brand-400" />
+                    <CheckCircle2 className="w-5 h-5 text-gold-400" />
                     <span className="text-sm font-bold">24/7 Support</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-brand-400" />
+                    <CheckCircle2 className="w-5 h-5 text-gold-400" />
                     <span className="text-sm font-bold">Faridabad Local</span>
                   </div>
                 </div>

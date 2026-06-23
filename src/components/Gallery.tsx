@@ -74,9 +74,7 @@ export default function Gallery() {
               <video 
                 className="w-full h-full object-cover" 
                 poster="/images/hero_installation.png"
-              >
-                <source src="" type="video/mp4" />
-              </video>
+              />
               <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-all flex items-center justify-center">
                 <motion.div 
                   whileHover={{ scale: 1.1 }}

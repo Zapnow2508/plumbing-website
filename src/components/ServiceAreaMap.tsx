@@ -27,7 +27,7 @@ export default function ServiceAreaMap() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="text-brand-600 font-black uppercase tracking-[0.3em] text-xs mb-4 block">Our Reach</span>
+              <span className="text-gold-600 font-black uppercase tracking-[0.3em] text-xs mb-4 block">Our Reach</span>
               <h2 className="text-4xl md:text-6xl mb-8 text-slate-900 leading-tight">Serving all of Faridabad</h2>
               <p className="text-slate-500 text-xl leading-relaxed font-medium">
                 Royal Plumbing Services is proud to serve the entire Faridabad region. From residential complexes in Sector 15 to commercial hubs in NIT, we are just a call away.
@@ -36,7 +36,7 @@ export default function ServiceAreaMap() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600 shrink-0">
+                <div className="w-12 h-12 rounded-2xl bg-gold-50 flex items-center justify-center text-gold-600 shrink-0 border border-gold-100">
                   <MapPin className="w-6 h-6" />
                 </div>
                 <div>
@@ -45,7 +45,7 @@ export default function ServiceAreaMap() {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-50 flex items-center justify-center text-brand-600 shrink-0">
+                <div className="w-12 h-12 rounded-2xl bg-gold-50 flex items-center justify-center text-gold-600 shrink-0 border border-gold-100">
                   <Clock className="w-6 h-6" />
                 </div>
                 <div>
@@ -85,7 +85,7 @@ export default function ServiceAreaMap() {
               />
               <Circle 
                 center={FARIDABAD_CENTER}
-                pathOptions={{ color: '#416eff', fillColor: '#416eff', fillOpacity: 0.2 }}
+                pathOptions={{ color: '#1e40af', fillColor: '#1e40af', fillOpacity: 0.2 }}
                 radius={8000} 
               />
               <Marker position={FARIDABAD_CENTER}>
@@ -101,7 +101,7 @@ export default function ServiceAreaMap() {
             {/* Map Overlay Badge */}
             <div className="absolute top-8 left-8 z-[1000] bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl border border-white/20">
               <div className="flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-brand-600 animate-pulse" />
+                <div className="w-3 h-3 rounded-full bg-gold-600 animate-pulse" />
                 <span className="text-xs font-black uppercase tracking-widest text-slate-900">Live Service Area</span>
               </div>
             </div>

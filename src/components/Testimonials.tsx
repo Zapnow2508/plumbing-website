@@ -1,4 +1,4 @@
-import { Star, Quote, Plus, X } from 'lucide-react';
+import { Star, Quote, Plus, X, Award, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import React, { useState, useEffect } from 'react';
 
@@ -35,7 +35,7 @@ export default function Testimonials() {
   const [newReview, setNewReview] = useState({ name: '', location: '', quote: '', rating: 5 });
 
   useEffect(() => {
-    const saved = localStorage.getItem('vikas_reviews');
+    const saved = localStorage.getItem('royal_plumbing_reviews');
     if (saved) {
       try {
         setReviews([...JSON.parse(saved), ...initialTestimonials]);
@@ -50,85 +50,95 @@ export default function Testimonials() {
     const updatedReviews = [newReview, ...reviews];
     setReviews(updatedReviews);
     
-    const saved = localStorage.getItem('vikas_reviews');
+    const saved = localStorage.getItem('royal_plumbing_reviews');
     const parsedSaved = saved ? JSON.parse(saved) : [];
-    localStorage.setItem('vikas_reviews', JSON.stringify([newReview, ...parsedSaved]));
+    localStorage.setItem('royal_plumbing_reviews', JSON.stringify([newReview, ...parsedSaved]));
     
     setShowForm(false);
     setNewReview({ name: '', location: '', quote: '', rating: 5 });
   };
 
   return (
-    <section className="py-24 px-4 bg-white overflow-hidden relative">
+    <section className="py-24 px-4 bg-slate-50 overflow-hidden relative">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <div className="text-left max-w-2xl">
-            <span className="text-brand-600 font-bold uppercase tracking-widest text-sm">Testimonials</span>
-            <h2 className="text-3xl md:text-4xl mt-2 text-slate-900 font-black">What Our Customers Say</h2>
-            <p className="text-slate-600 mt-4 leading-relaxed font-medium">
-              We take pride in delivering top-notch plumbing services across Faridabad. Here's why our customers trust us.
-            </p>
-          </div>
-          <button 
-            onClick={() => setShowForm(true)}
-            className="bg-brand-50 hover:bg-brand-100 border border-brand-200 text-brand-700 px-6 py-4 rounded-2xl font-bold transition-all flex items-center gap-2 shrink-0 hover:shadow-lg shadow-sm"
+        <div className="flex flex-col lg:flex-row gap-16 items-stretch">
+          
+          {/* Summary Panel (Left Card) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="lg:w-4/12 bg-white border border-slate-200/60 p-10 rounded-[2.5rem] flex flex-col justify-between shadow-xl"
           >
-            <Plus className="w-5 h-5" />
-            Write a Review
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {reviews.slice(0, 8).map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col h-full hover:shadow-lg transition-shadow"
-            >
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-4 h-4 ${i < item.rating ? 'text-yellow-400 fill-yellow-400' : 'text-slate-300'}`}
-                  />
-                ))}
-              </div>
-              
-              <div className="relative flex-grow">
-                <Quote className="absolute -top-2 -left-2 w-8 h-8 text-brand-100 -z-0" />
-                <p className="text-slate-700 italic leading-relaxed relative z-10 mb-6">
-                  "{item.quote}"
-                </p>
-              </div>
-
-              <div className="pt-6 border-t border-slate-200">
-                <h4 className="font-bold text-slate-900">{item.name}</h4>
-                <p className="text-xs text-brand-600 font-medium">{item.location}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-4 bg-brand-50 px-6 py-3 rounded-full border border-brand-100">
-            <div className="flex -space-x-2">
-              {[1, 2, 3, 4].map((i) => (
-                <img
-                  key={i}
-                  src={`https://picsum.photos/seed/user${i}/40/40`}
-                  alt="User"
-                  className="w-8 h-8 rounded-full border-2 border-white"
-                  referrerPolicy="no-referrer"
-                />
-              ))}
+            <div>
+              <span className="text-gold-600 font-bold uppercase tracking-widest text-[10px] bg-gold-50 border border-gold-200 px-4 py-1.5 rounded-full inline-block mb-6">
+                Customer Feedback
+              </span>
+              <h2 className="text-3xl md:text-4xl text-slate-900 font-display font-black leading-tight mb-4">
+                What Our Clients Say
+              </h2>
+              <p className="text-slate-500 text-sm leading-relaxed mb-8">
+                We take immense pride in delivering top-notch residential and commercial plumbing services across Faridabad.
+              </p>
             </div>
-            <p className="text-sm font-semibold text-brand-900">
-              Join {500 + reviews.length - initialTestimonials.length}+ happy customers in Faridabad
-            </p>
+
+            <div className="space-y-6">
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex items-center gap-4">
+                <div className="text-4xl font-display font-black text-slate-900">4.9</div>
+                <div>
+                  <div className="flex gap-0.5 mb-1 text-yellow-400">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-4.5 h-4.5 fill-current" />)}
+                  </div>
+                  <div className="text-xs text-slate-400 font-bold uppercase">Average Service Rating</div>
+                </div>
+              </div>
+
+              <button 
+                onClick={() => setShowForm(true)}
+                className="w-full bg-brand-600 hover:bg-brand-700 text-white py-4.5 rounded-full font-black uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-600/10 border border-brand-500 hover:border-gold-400"
+              >
+                <Plus className="w-4 h-4" />
+                Write a Review
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Testimonials Feed Grid (Right Side) */}
+          <div className="lg:w-8/12 grid grid-cols-1 sm:grid-cols-2 gap-6 max-h-[550px] overflow-y-auto pr-2">
+            {reviews.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-white p-8 rounded-[2rem] border border-slate-200/50 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative overflow-hidden"
+              >
+                <Quote className="absolute -top-3 -right-3 w-16 h-16 text-gold-200/20 -z-0" />
+                <div>
+                  <div className="flex gap-0.5 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-3.5 h-3.5 ${i < item.rating ? 'text-yellow-400 fill-yellow-400' : 'text-slate-200'}`}
+                      />
+                    ))}
+                  </div>
+                  <p className="text-slate-600 italic text-sm leading-relaxed mb-6 relative z-10">
+                    "{item.quote}"
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100 flex justify-between items-center">
+                  <div>
+                    <h4 className="font-display font-black text-slate-900 text-sm">{item.name}</h4>
+                    <p className="text-[10px] text-gold-600 font-bold uppercase tracking-wider">{item.location}</p>
+                  </div>
+                  <ShieldCheck className="w-5 h-5 text-green-500" />
+                </div>
+              </motion.div>
+            ))}
           </div>
+
         </div>
       </div>
 
@@ -137,14 +147,14 @@ export default function Testimonials() {
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" 
+              className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm" 
               onClick={() => setShowForm(false)} 
             />
             <motion.div 
               initial={{ opacity: 0, scale: 0.95, y: 20 }} 
               animate={{ opacity: 1, scale: 1, y: 0 }} 
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl p-8 z-10"
+              className="relative w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl p-8 z-10 border border-slate-100"
             >
               <button 
                 onClick={() => setShowForm(false)} 
@@ -153,13 +163,13 @@ export default function Testimonials() {
                 <X className="w-5 h-5" />
               </button>
               
-              <h3 className="text-3xl font-black text-slate-900 mb-2">Write a Review</h3>
-              <p className="text-slate-500 font-medium text-sm mb-8">Share your experience with Royal Plumbing Services.</p>
+              <h3 className="text-2xl font-display font-black text-slate-900 mb-2">Write a Review</h3>
+              <p className="text-slate-500 font-medium text-sm mb-6">Share your experience with Royal Plumbing Services.</p>
               
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-3">Rate your experience</label>
-                  <div className="flex gap-2 bg-slate-50 p-4 rounded-2xl w-fit border border-slate-100">
+                  <label className="block text-xs font-black uppercase text-slate-400 tracking-wider mb-2.5">Rating</label>
+                  <div className="flex gap-2 bg-slate-50 p-4 rounded-xl w-fit border border-slate-200/50">
                     {[1,2,3,4,5].map(star => (
                       <button 
                         type="button" 
@@ -167,31 +177,31 @@ export default function Testimonials() {
                         onClick={() => setNewReview({...newReview, rating: star})}
                         className="hover:scale-110 transition-transform focus:outline-none"
                       >
-                        <Star className={`w-8 h-8 ${star <= newReview.rating ? 'text-yellow-400 fill-yellow-400 drop-shadow-sm' : 'text-slate-200'}`} />
+                        <Star className={`w-7 h-7 ${star <= newReview.rating ? 'text-yellow-400 fill-yellow-400' : 'text-slate-200'}`} />
                       </button>
                     ))}
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="col-span-2 sm:col-span-1">
-                    <label className="block text-sm font-bold text-slate-700 mb-2">Your Name</label>
+                  <div>
+                    <label className="block text-xs font-black uppercase text-slate-400 tracking-wider mb-2">Name</label>
                     <input 
                       required 
                       type="text" 
                       placeholder="e.g. Rahul Gupta" 
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all font-medium" 
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all font-medium text-sm" 
                       value={newReview.name} 
                       onChange={e => setNewReview({...newReview, name: e.target.value})} 
                     />
                   </div>
-                  <div className="col-span-2 sm:col-span-1">
-                    <label className="block text-sm font-bold text-slate-700 mb-2">Location</label>
+                  <div>
+                    <label className="block text-xs font-black uppercase text-slate-400 tracking-wider mb-2">Location</label>
                     <input 
                       required 
                       type="text" 
                       placeholder="e.g. Sector 15" 
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all font-medium" 
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all font-medium text-sm" 
                       value={newReview.location} 
                       onChange={e => setNewReview({...newReview, location: e.target.value})} 
                     />
@@ -199,12 +209,12 @@ export default function Testimonials() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-2">Your Review</label>
+                  <label className="block text-xs font-black uppercase text-slate-400 tracking-wider mb-2">Review</label>
                   <textarea 
                     required 
                     placeholder="Tell us about the service provided..." 
                     rows={4} 
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all font-medium resize-none" 
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all font-medium text-sm resize-none" 
                     value={newReview.quote} 
                     onChange={e => setNewReview({...newReview, quote: e.target.value})} 
                   />
@@ -212,7 +222,7 @@ export default function Testimonials() {
                 
                 <button 
                   type="submit" 
-                  className="w-full bg-brand-600 text-white font-black text-lg py-4 rounded-xl hover:bg-brand-700 transition-colors shadow-lg shadow-brand-600/20 mt-4"
+                  className="w-full bg-brand-600 text-white font-black uppercase tracking-widest text-sm py-4.5 rounded-full hover:bg-brand-700 transition-colors shadow-lg shadow-brand-600/20 mt-4 border border-brand-500 hover:border-gold-400"
                 >
                   Post Review
                 </button>
